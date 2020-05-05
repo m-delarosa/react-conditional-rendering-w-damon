@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import RapperList from './components/RapperList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    rappers: [
+      {
+        name: "Nas",
+        rating: 10,
+        best_album: "Illmatic"
+      },
+      {
+        name: "Lil Wayne",
+        rating: 10,
+        best_album: "Carter II"
+      },
+      {
+        name: "Yung Gravy",
+        rating: 1,
+        best_album: null
+      },
+      {
+        name: "Lil Yachty",
+        rating: 0,
+        best_album: null
+      }
+    ]
+  }
+
+  render() {
+    return (
+      <div className="App" >
+        <h1>Rap App</h1>
+        <RapperList rappers={this.state.rappers} />
+        // If we wanted to conditionally render a component:
+        {this.state.rappers.length < 5 ? "NOT ENOUGH DATA" : <RapperList rappers={this.state.rappers} />}
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
